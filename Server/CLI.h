@@ -1,5 +1,5 @@
 //
-// Created by Daniel on 09/09/2021.
+// Created by Daniel on 17/09/2021.
 //
 
 #ifndef CLIENT_CLI_H
@@ -7,10 +7,7 @@
 
 
 class CLI {
-    /**
-     * Starts the program.
-     */
-    void start();
+
 };
 
 

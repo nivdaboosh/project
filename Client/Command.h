@@ -2,14 +2,17 @@
 #define CLIENT_COMMAND_H
 
 #include <string>
+
 using namespace std;
+
 // abstract
 class Command {
 protected:
     string description;
-    // abstract
-    void execute();
+public:
+    virtual void execute(sockaddr_in sin, string input);
     string getDescription();
+    static sockaddr_in connecting();
 };
 
 

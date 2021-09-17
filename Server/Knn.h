@@ -12,7 +12,7 @@ public:
     /**
      * Creates a new Knn.
      */
-    Knn(int k, string distanceType);
+    Knn();
 
     /**
      * Finds the type of an Iris.
@@ -26,7 +26,7 @@ public:
     /**
      * Takes the input from a file with a given path.
      * @param path string.
-     * @param isClassified bool. 
+     * @param isClassified bool.
      * @param others std::vector<Iris>.
      * @return std::vector<Iris>.
      */
@@ -34,7 +34,7 @@ public:
 
     /**
      * Runs the Knn.
-     * @param unclassified string. 
+     * @param unclassified string.
      * @return std::vector<string>.
      */
     std::vector<string> run(string unclassified);

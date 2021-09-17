@@ -22,12 +22,6 @@ int main() {
     string output = strtok(nullptr, " ");
     std::vector<string> text;
     struct sockaddr_in TCPSin = TCPClient::connecting();
-    if (protocol == "TCP") {
-        text = ::TCPClient::TcpClient(unclassified, TCPSin);
-    } else if (protocol == "UDP") {
-    } else {
-        perror("Wrong protocol");
-    }
     // Opens a file.
     std::ofstream fout(output);
     for (int i = 0; i < text.size() - 1; ++i) {

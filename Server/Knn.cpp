@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
+#include <utility>
 #include <vector>
 #include <string>
 #include <fstream>
@@ -12,9 +13,9 @@
 /**
  * Creates a new Knn.
  */
-Knn::Knn(int k, string distanceType) {
+Knn::Knn() {
     this->k = 5;
-    this->distanceType = std::move(distanceType);
+    this->distanceType = "EUC";
 }
 
 /**
@@ -111,5 +112,5 @@ void Knn::setK(int x) {
 }
 
 void Knn::setDistanceType(string x) {
-    this->distanceType = x;
+    this->distanceType = std::move(x);
 }
