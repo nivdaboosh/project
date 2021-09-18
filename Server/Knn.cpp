@@ -114,3 +114,11 @@ void Knn::setK(int x) {
 void Knn::setDistanceType(string x) {
     this->distanceType = std::move(x);
 }
+
+int Knn::getK() {
+    return this->k;
+}
+
+string Knn::getDistance() {
+    return this->distanceType;
+}

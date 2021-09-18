@@ -45,6 +45,5 @@ std::vector<string> Iris::strToVector(const std::string &str, const char identif
     while (std::getline(ss, theString, identifier)) {
         output.push_back(theString);
     }
-
     return output;
 }

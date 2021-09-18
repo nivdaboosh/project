@@ -7,7 +7,10 @@
 
 
 class CLI {
-
+    /**
+    * Starts the program.
+    */
+    void start();
 };
 
 

@@ -19,7 +19,7 @@ public:
      * @param sin sockaddr_in.
      * @return std::vector<string>
      */
-    static std::vector<string> TcpClient(string unClassified, sockaddr_in sin);
+    static std::vector<string> TcpClient(string message, sockaddr_in sin);
 };
 
 

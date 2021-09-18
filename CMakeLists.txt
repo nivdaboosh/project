@@ -5,6 +5,6 @@ project(Client)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(Server Server/main.cpp Server/Knn.cpp Server/Knn.h Iris.h
-        Iris.cpp Server/TCPServer.cpp Server/TCPServer.h Client/Upload.cpp Client/Upload.h Server/CLI.cpp Server/CLI.h)
-add_executable(Client Client/main.cpp Client/TCPClient.cpp Client/TCPClient.h Iris.h Iris.cpp Client/Command.cpp
-        Client/Command.h Client/CLI.cpp Client/CLI.h Client/Settings.cpp Client/Settings.h Client/Classify.cpp Client/Classify.h Client/Display.cpp Client/Display.h Client/Download.cpp Client/Download.h Client/Matrix.cpp Client/Matrix.h)
+        Iris.cpp Server/TCPServer.cpp Server/TCPServer.h Server/Upload.cpp Server/Upload.h Server/CLI.cpp Server/CLI.h)
+add_executable(Client Client/main.cpp Client/TCPClient.cpp Client/TCPClient.h Iris.h Iris.cpp Server/Command.cpp
+        Server/Command.h Client/CLI.cpp Client/CLI.h Server/Settings.cpp Server/Settings.h Server/Classify.cpp Server/Classify.h Server/Display.cpp Server/Display.h Server/Download.cpp Server/Download.h Server/Matrix.cpp Server/Matrix.h)

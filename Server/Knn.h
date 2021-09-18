@@ -50,6 +50,10 @@ public:
      * @param x string.
      */
     void setDistanceType(string x);
+
+    int getK();
+
+    string getDistance();
 };
 
 
