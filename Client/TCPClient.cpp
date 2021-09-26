@@ -12,7 +12,7 @@
 using namespace std;
 
 
-sockaddr_in TCPClient::connecting() {
+int TCPClient::connecting() {
     const char *ip_address = "127.0.0.1";
     const int port_no = 55755;
 
@@ -22,10 +22,6 @@ sockaddr_in TCPClient::connecting() {
     sin.sin_addr.s_addr = inet_addr(ip_address);
     sin.sin_port = htons(port_no);
 
-    return sin;
-}
-
-std::vector<string> TCPClient::TcpClient(string message, sockaddr_in sin) {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         perror("error creating socket");
@@ -35,12 +31,18 @@ std::vector<string> TCPClient::TcpClient(string message, sockaddr_in sin) {
         perror("error connecting to server");
     }
 
+    return sock;
+}
+
+void TCPClient::sendMessage(string message, int sock) {
     int sent_bytes = send(sock, message.c_str(), strlen(message.c_str()), 0);
 
     if (sent_bytes < 0) {
         perror("error sending message");
     }
+}
 
+std::vector<string> TCPClient::readMessage(int sock) {
     std::vector<string> output;
     char buffer[4096];
     int expected_data_len = sizeof(buffer);

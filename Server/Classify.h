@@ -1,16 +1,19 @@
-//
-// Created by Daniel on 15/09/2021.
-//
-
 #ifndef CLIENT_CLASSIFY_H
 #define CLIENT_CLASSIFY_H
 
 
 #include "Command.h"
 
-class Classify : public Command{
+class Classify : public Command {
 public:
-    Classify();
+    /**
+     * Constructor.
+     */
+    Classify() {
+        this->description = "classify data";
+    }
+
+    void execute(Knn knn, int client_sock);
 };
 
 

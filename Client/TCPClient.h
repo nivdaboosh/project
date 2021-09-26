@@ -11,15 +11,21 @@ public:
      * Connecting to TCP.
      * @return sockaddr_in.
      */
-    static sockaddr_in connecting();
+    static int connecting();
 
     /**
-     * Running the TCP client.
-     * @param unClassified string.
+     * Sending the message.
+     * @param message string.
      * @param sin sockaddr_in.
-     * @return std::vector<string>
      */
-    static std::vector<string> TcpClient(string message, sockaddr_in sin);
+    static void sendMessage(string message, int sock);
+
+    /**
+     * Sending the message.
+     * @param sin sockaddr_in.
+     * @return std::vector<string>.
+     */
+    static std::vector<string> readMessage(int sock);
 };
 
 

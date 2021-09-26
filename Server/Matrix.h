@@ -1,7 +1,3 @@
-//
-// Created by Daniel on 15/09/2021.
-//
-
 #ifndef CLIENT_MATRIX_H
 #define CLIENT_MATRIX_H
 
@@ -13,7 +9,11 @@ public:
     /**
      * Constructor.
      */
-    Matrix();
+    Matrix() {
+        this->description = "display algorithm confusion matrix";
+    }
+
+    void execute(Knn knn, int client_sock);
 };
 
 

@@ -5,10 +5,18 @@
 class TCPServer {
 public:
     /**
-     * Runs the TCP server.
-     * @return int.
+     * Reads a message.
+     * @param client_sock int.
+     * @return string.
      */
-    static int TcpServer();
+    static string readMessage(int client_sock);
+
+    /**
+     * Sends a message.
+     * @param message string.
+     * @param client_sock int.
+     */
+    static void sendMessage(string message, int client_sock);
 };
 
 

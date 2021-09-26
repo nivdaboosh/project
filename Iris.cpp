@@ -10,7 +10,6 @@ using std::endl;
 using std::ifstream;
 using namespace std;
 
-
 Iris::Iris(double x, double y, double z, double w, string type, string distanceType) {
     this->x = x;
     this->y = y;
@@ -46,4 +45,13 @@ std::vector<string> Iris::strToVector(const std::string &str, const char identif
         output.push_back(theString);
     }
     return output;
+}
+
+string Iris::vectorToStr(std::vector<string> list, char identifier) {
+    string str;
+    for (string string1:list) {
+        str += string1;
+        str += identifier;
+    }
+    return str;
 }

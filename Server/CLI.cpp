@@ -3,7 +3,6 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <cstring>
-#include <vector>
 
 #include "Knn.h"
 #include "CLI.h"
@@ -14,6 +13,7 @@
 #include "Display.h"
 #include "Download.h"
 #include "Matrix.h"
+#include "TCPServer.h"
 
 void CLI::start() {
     const int server_port = 55755;
@@ -45,37 +45,30 @@ void CLI::start() {
         perror("error accepting client");
     }
 
-    char buffer[4096];
-    int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
-    if (read_bytes == 0) {
-        perror("Connection is closed");
-    } else if (read_bytes < 0) {
-        perror("Error reading message");
-    }
-
-    Command commands[] = {Upload(), Settings(), Classify(), Display(), Download(), Matrix()};
-    Knn knn = Knn();
-    string output=commands[stoi(buffer)].execute(knn);
-
+    std::vector<Command> commands = {Upload(), Settings(), Classify(), Display(), Download(), Matrix()};
+    std::vector<string> list;
+    list.emplace_back("Welcome to the KNN Classifier Server. Please choose an option:");
     int counter = 1;
-    cout << "Welcome to the KNN Classifier Server. Please choose an option:" << endl;
     for (Command command:commands) {
-        cout << counter++ << "." << "\t" << command.getDescription() << endl;
+        list.push_back(to_string(counter) + "." + "\t" + command.getDescription());
+        ++counter;
     }
-    /**
-    std::vector <string> list = knn.run(buffer);
-    for (int i = 0; i < list.size(); ++i) {
-        output += list[i];
-        output += "$";
+    list.push_back(to_string(counter) + "." + "\t" + "exit");
+    string output = Iris::vectorToStr(list, '$');
+
+    while (true) {
+        TCPServer::sendMessage(output, client_sock);
+
+        string input=TCPServer::readMessage(client_sock);
+        if (stoi(input) > 7) {
+            output= "Wrong number";
+            TCPServer::sendMessage(output, client_sock);
+        } else if (stoi(input) == 7) {
+            close(sock);
+            exit(1);
+        } else {
+            Knn knn = Knn();
+            commands[stoi(input) - 1].execute(knn, client_sock);
+        }
     }
-    */
-    char data_addr[output.size()];
-    strcpy(data_addr, output.c_str());
-    int data_len = sizeof(data_addr);
-    int sent_bytes = send(client_sock, data_addr, data_len, 0);
-    if (sent_bytes < 0) {
-        perror("Error reading message");
-    }
-    close(sock);
 }

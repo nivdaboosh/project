@@ -1,7 +1,3 @@
-//
-// Created by Daniel on 15/09/2021.
-//
-
 #ifndef CLIENT_SETTINGS_H
 #define CLIENT_SETTINGS_H
 
@@ -13,7 +9,11 @@ public:
     /**
      * Constructor.
      */
-    Settings();
+    Settings() {
+        this->description = "algorithm settings";
+    }
+
+    void execute(Knn knn, int client_sock);
 };
 
 

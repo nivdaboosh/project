@@ -46,6 +46,14 @@ public:
     string getType();
 
     /**
+     * Turns a vector to a string.
+     * @param list std::vector<string>
+     * @param identifier char
+     * @return std::vector<string>.
+     */
+    static string vectorToStr(std::vector<string> list, char identifier);
+
+    /**
      * Turns a string to a vector.
      * @param str const std::string &
      * @param identifier const char

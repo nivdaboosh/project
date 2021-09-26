@@ -1,7 +1,3 @@
-//
-// Created by Daniel on 15/09/2021.
-//
-
 #ifndef CLIENT_DISPLAY_H
 #define CLIENT_DISPLAY_H
 
@@ -13,7 +9,11 @@ public:
     /**
      * Constructor.
      */
-    Display();
+    Display() {
+        this->description="display results";
+    }
+
+    void execute(Knn knn, int client_sock);
 };
 
 

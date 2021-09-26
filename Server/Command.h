@@ -2,6 +2,7 @@
 #define CLIENT_COMMAND_H
 
 #include <string>
+#include <netinet/in.h>
 #include "Knn.h"
 
 using namespace std;
@@ -11,9 +12,18 @@ class Command {
 protected:
     string description;
 public:
-    virtual string execute(Knn knn);
+    /**
+     * Execute.
+     * @param knn Knn.
+     * @param client_sock int.
+     */
+    virtual void execute(Knn knn, int client_sock);
+
+    /**
+     * Returns the description of the command.
+     * @return string.
+     */
     string getDescription();
-    static sockaddr_in connecting();
 };
 
 

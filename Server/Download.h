@@ -1,7 +1,3 @@
-//
-// Created by Daniel on 15/09/2021.
-//
-
 #ifndef CLIENT_DOWNLOAD_H
 #define CLIENT_DOWNLOAD_H
 
@@ -13,7 +9,11 @@ public:
     /**
      * Constructor.
      */
-    Download();
+    Download() {
+        this->description = "download results";
+    }
+
+    void execute(Knn knn, int client_sock);
 };
 
 

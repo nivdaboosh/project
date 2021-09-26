@@ -1,9 +1,11 @@
-//
-// Created by Daniel on 15/09/2021.
-//
+#include "cstring"
 
 #include "Display.h"
+#include "TCPServer.h"
 
-Display::Display() {
-    this->description="display results";
+void Display::execute(Knn knn, int client_sock) {
+    string output = knn.getTypes();
+    TCPServer::sendMessage(output, client_sock);
+
+    TCPServer::readMessage(client_sock);
 }

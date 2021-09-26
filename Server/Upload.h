@@ -1,7 +1,3 @@
-//
-// Created by Daniel on 15/09/2021.
-//
-
 #ifndef CLIENT_UPLOAD_H
 #define CLIENT_UPLOAD_H
 
@@ -10,7 +6,14 @@
 
 class Upload : public Command {
 public:
-    Upload();
+    /**
+     * Constructor.
+     */
+    Upload() {
+        this->description="upload an unclassified csv data file";
+    }
+
+    void execute(Knn knn, int client_sock);
 };
 
 

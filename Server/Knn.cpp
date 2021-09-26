@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
-#include <utility>
 #include <vector>
 #include <string>
 #include <fstream>
@@ -35,8 +34,28 @@ string Knn::theType(Iris iris, std::vector<Iris> others) {
         map.insert(std::pair<double, Iris>(distances[i], others[i]));
     }
     std::sort(distances.begin(), distances.end());
+    std::map<string, int> numMap;
     for (int i = 0; i < k; ++i) {
         auto iterator = map.find(distances[i]);
+        /**
+        if (!numMap.count(iterator->second.getType())) {
+            numMap.insert(std::pair<string, int>(iterator->second.getType(), 1));
+            this->allTypes.push_back(iterator->second.getType());
+        } else {
+            numMap.insert(std::pair<string, int>(iterator->second.getType(),
+                                                 numMap.find(iterator->second.getType())->second + 1));
+        }
+
+        int max = 0;
+        string theKey;
+        for (const auto &myPair : numMap) {
+            if (numMap.find(myPair.first)->second > max) {
+                max = numMap.find(myPair.first)->second;
+                theKey = myPair.first;
+            }
+        }
+        return theKey;
+         */
         if (iterator->second.getType() == "Iris-virginica") {
             numVirginica++;
         }
@@ -94,12 +113,12 @@ std::vector<Iris> Knn::input(string path, bool isClassified, std::vector<Iris> o
  * main - starts the program.
  * @return 0.
  */
-std::vector<string> Knn::run(string unclassified) {
-    string pathC = "classified.csv";
+std::vector<string> Knn::run(string classified, string unclassified) {
+    string pathC = std::move(classified);
     string pathU = std::move(unclassified);
     std::vector<Iris> nullVector;
-    std::vector<Iris> classified = input(std::string(pathC), true, nullVector);
-    std::vector<Iris> irises = input(std::string(pathU), false, classified);
+    std::vector<Iris> classifieds = input(std::string(pathC), true, nullVector);
+    std::vector<Iris> irises = input(std::string(pathU), false, classifieds);
     std::vector<string> output;
     for (int i = 0; i < irises.size(); ++i) {
         output.push_back(irises[i].getType());
@@ -121,4 +140,32 @@ int Knn::getK() {
 
 string Knn::getDistance() {
     return this->distanceType;
+}
+
+void Knn::setTrain(string x) {
+    this->train = std::move(x);
+}
+
+void Knn::setTest(string x) {
+    this->test = std::move(x);
+}
+
+string Knn::getTrain() {
+    return this->train;
+}
+
+string Knn::getTest() {
+    return this->test;
+}
+
+string Knn::getTypes() {
+    return this->types;
+}
+
+void Knn::setTypes(string x) {
+    this->types = std::move(x);
+}
+
+std::vector<string> Knn::getAllTypes() {
+    return this->allTypes;
 }

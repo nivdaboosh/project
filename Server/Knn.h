@@ -8,6 +8,10 @@ class Knn {
 private:
     int k;
     string distanceType;
+    string train;
+    string test;
+    string types;
+    std::vector<string> allTypes;
 public:
     /**
      * Creates a new Knn.
@@ -37,7 +41,7 @@ public:
      * @param unclassified string.
      * @return std::vector<string>.
      */
-    std::vector<string> run(string unclassified);
+    std::vector<string> run(string classified, string unclassified);
 
     /**
      * Sets the K.
@@ -51,10 +55,59 @@ public:
      */
     void setDistanceType(string x);
 
+    /**
+     * Returns the K.
+     * @return int.
+     */
     int getK();
 
+    /**
+     * Returns the distance type.
+     * @return string.
+     */
     string getDistance();
-};
 
+    /**
+     * Sets the train file.
+     * @param x string.
+     */
+    void setTrain(string x);
+
+    /**
+     * Sets the test file.
+     * @param x string.
+     */
+    void setTest(string x);
+
+    /**
+     * Returns the train file.
+     * @return string.
+     */
+    string getTrain();
+
+    /**
+     * Returns the test file.
+     * @return string.
+     */
+    string getTest();
+
+    /**
+     * Sets the types.
+     * @param x string.
+     */
+    void setTypes(string x);
+
+    /**
+     * Returns the types.
+     * @return string.
+     */
+    string getTypes();
+
+    /**
+     * Returns the vector of all types.
+     * @return std::vector<string>.
+     */
+    std::vector<string> getAllTypes();
+};
 
 #endif //UNTITLED_KNN_H
