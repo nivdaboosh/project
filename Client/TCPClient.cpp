@@ -54,6 +54,5 @@ std::vector<string> TCPClient::readMessage(int sock) {
     } else {
         output = Iris::strToVector(buffer, '$');
     }
-    close(sock);
     return output;
 }
