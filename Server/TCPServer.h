@@ -1,6 +1,9 @@
 #ifndef CLIENT_CPP_TCPSERVER_H
 #define CLIENT_CPP_TCPSERVER_H
 
+#include "string"
+
+using namespace std;
 
 class TCPServer {
 public:

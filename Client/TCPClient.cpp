@@ -35,6 +35,7 @@ int TCPClient::connecting() {
 }
 
 void TCPClient::sendMessage(string message, int sock) {
+    message += "@";
     int sent_bytes = send(sock, message.c_str(), strlen(message.c_str()), 0);
 
     if (sent_bytes < 0) {
@@ -52,7 +53,8 @@ std::vector<string> TCPClient::readMessage(int sock) {
     } else if (read_bytes < 0) {
         perror("error reading message");
     } else {
-        output = Iris::strToVector(buffer, '$');
+        string message = strtok(buffer, "@");
+        output = Iris::strToVector(message, '$');
     }
     return output;
 }

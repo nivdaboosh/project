@@ -20,7 +20,7 @@ int main() {
         for (string string1:output) {
             cout << string1 << endl;
         }
-        getline(cin, input);
+        cin >> input;
         TCPClient::sendMessage(input, sock);
     }
     return 0;

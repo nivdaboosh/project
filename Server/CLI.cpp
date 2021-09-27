@@ -45,30 +45,29 @@ void CLI::start() {
         perror("error accepting client");
     }
 
-    std::vector<Command> commands = {Upload(), Settings(), Classify(), Display(), Download(), Matrix()};
+    std::vector<Command *> commands = {new Upload(), new Settings(), new Classify(), new Display(), new Download(),
+                                       new Matrix()};
     std::vector<string> list;
     list.emplace_back("Welcome to the KNN Classifier Server. Please choose an option:");
     int counter = 1;
-    for (Command command:commands) {
-        list.push_back(to_string(counter) + "." + "\t" + command.getDescription());
+    for (Command* command:commands) {
+        list.push_back(to_string(counter) + "." + "\t" + command->getDescription());
         ++counter;
     }
     list.push_back(to_string(counter) + "." + "\t" + "exit");
     string output = Iris::vectorToStr(list, '$');
-
+    Knn knn = Knn();
     while (true) {
         TCPServer::sendMessage(output, client_sock);
 
-        string input=TCPServer::readMessage(client_sock);
+        string input = TCPServer::readMessage(client_sock);
         if (stoi(input) > 7) {
-            output= "Wrong number";
-            TCPServer::sendMessage(output, client_sock);
-        } else if (stoi(input) == 7) {
+            TCPServer::sendMessage("Wrong number", client_sock);
+        } else if (input == "7") {
             close(sock);
             exit(1);
         } else {
-            Knn knn = Knn();
-            commands[stoi(input) - 1].execute(knn, client_sock);
+            commands[stoi(input) - 1]->execute(knn, client_sock);
         }
     }
 }

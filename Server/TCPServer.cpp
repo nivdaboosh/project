@@ -1,12 +1,8 @@
 #include <iostream>
 #include <sys/socket.h>
 #include <cstdio>
-#include <netinet/in.h>
-#include <unistd.h>
 #include <cstring>
-#include <vector>
 
-#include "Knn.h"
 #include "TCPServer.h"
 
 using namespace std;
@@ -20,10 +16,12 @@ string TCPServer::readMessage(int client_sock) {
     } else if (read_bytes < 0) {
         perror("Error reading message");
     }
-    return buffer;
+    string output = strtok(buffer, "@");
+    return output;
 }
 
 void TCPServer::sendMessage(string message, int client_sock) {
+    message += "@";
     char data_addr[message.size()];
     strcpy(data_addr, message.c_str());
     int data_len = sizeof(data_addr);

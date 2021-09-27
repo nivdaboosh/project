@@ -1,4 +1,3 @@
-#include <sstream>
 #include "cstring"
 
 #include "Settings.h"
@@ -10,13 +9,15 @@ void Settings::execute(Knn knn, int client_sock) {
                     + ", distance metric = " + knn.getDistance();
     TCPServer::sendMessage(output, client_sock);
 
-    string buffer = TCPServer::readMessage(client_sock).c_str();
+    string buffer = TCPServer::readMessage(client_sock);
     char input[4096];
     strcpy(input, buffer.c_str());
 
+    std::vector<string> strings=Iris::strToVector(input, ' ');
     string isDouble = strtok(input, ".");
-    int newK = stoi(strtok(input, " "));
-    string newType = strtok(nullptr, " ");
+    // Let's assume we only enter a number and then a string.
+    int newK = stoi(strings[0]);
+    string newType = strings[1];
     bool continueInput = true;
     while (continueInput) {
         if (newK > 10 || newK < 1 || isDouble != input) {
@@ -31,4 +32,7 @@ void Settings::execute(Knn knn, int client_sock) {
             continueInput = false;
         }
     }
+    TCPServer::sendMessage("Great success", client_sock);
+
+    TCPServer::readMessage(client_sock);
 }
