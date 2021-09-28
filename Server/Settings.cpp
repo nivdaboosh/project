@@ -13,7 +13,7 @@ void Settings::execute(Knn knn, int client_sock) {
     char input[4096];
     strcpy(input, buffer.c_str());
 
-    std::vector<string> strings=Iris::strToVector(input, ' ');
+    std::vector<string> strings = Iris::strToVector(input, ' ');
     string isDouble = strtok(input, ".");
     // Let's assume we only enter a number and then a string.
     int newK = stoi(strings[0]);
@@ -26,6 +26,8 @@ void Settings::execute(Knn knn, int client_sock) {
         } else if (newType != "EUC" && newType != "MAN" && newType != "CHE") {
             output = "Invalid value for distance type";
             TCPServer::sendMessage(output, client_sock);
+        } else if (input == "This is enter my friend. Hala Madrid") {
+            continueInput = false;
         } else {
             knn.setK(newK);
             knn.setDistanceType(newType);

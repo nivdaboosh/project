@@ -24,9 +24,6 @@ Knn::Knn() {
  * @return the type of unclassified iris.
  */
 string Knn::theType(Iris iris, std::vector<Iris> others) {
-    int numVersicolor = 0;
-    int numVirginica = 0;
-    int numSetosa = 0;
     std::vector<double> distances;
     std::map<double, Iris> map;
     for (int i = 0; i < others.size(); i++) {
@@ -35,9 +32,10 @@ string Knn::theType(Iris iris, std::vector<Iris> others) {
     }
     std::sort(distances.begin(), distances.end());
     std::map<string, int> numMap;
+    string theKey;
     for (int i = 0; i < k; ++i) {
         auto iterator = map.find(distances[i]);
-        /**
+
         if (!numMap.count(iterator->second.getType())) {
             numMap.insert(std::pair<string, int>(iterator->second.getType(), 1));
             this->allTypes.push_back(iterator->second.getType());
@@ -47,32 +45,14 @@ string Knn::theType(Iris iris, std::vector<Iris> others) {
         }
 
         int max = 0;
-        string theKey;
         for (const auto &myPair : numMap) {
             if (numMap.find(myPair.first)->second > max) {
                 max = numMap.find(myPair.first)->second;
                 theKey = myPair.first;
             }
         }
-        return theKey;
-         */
-        if (iterator->second.getType() == "Iris-virginica") {
-            numVirginica++;
-        }
-        if (map.find(distances[i])->second.getType() == "Iris-versicolor") {
-            numVersicolor++;
-        }
-        if (map.find(distances[i])->second.getType() == "Iris-setosa") {
-            numSetosa++;
-        }
     }
-    if (numVirginica > numVersicolor && numVirginica > numSetosa) {
-        return "Iris-virginica";
-    } else if (numVersicolor > numSetosa) {
-        return "Iris-versicolor";
-    } else {
-        return "Iris-setosa";
-    }
+    return theKey;
 }
 
 /**

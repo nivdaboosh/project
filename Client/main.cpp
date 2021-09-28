@@ -20,7 +20,10 @@ int main() {
         for (string string1:output) {
             cout << string1 << endl;
         }
-        cin >> input;
+        getline(cin, input);
+        if (input.empty())
+            input = "This is enter my friend. Hala Madrid";
+
         TCPClient::sendMessage(input, sock);
     }
     return 0;
