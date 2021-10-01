@@ -18,6 +18,6 @@ void Upload::execute(Knn& knn, int client_sock) {
 
     output="Upload complete";
     TCPServer::sendMessage(output, client_sock);
-    int x=0;
+
     TCPServer::readMessage(client_sock);
 }

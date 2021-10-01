@@ -33,23 +33,23 @@ string Knn::theType(Iris iris, std::vector<Iris> others) {
     std::sort(distances.begin(), distances.end());
     std::map<string, int> numMap;
     string theKey;
-    for (int i = 0; i < k; ++i) {
+    for (int i = 0; i < this->k; ++i) {
         auto iterator = map.find(distances[i]);
 
         if (!numMap.count(iterator->second.getType())) {
             numMap.insert(std::pair<string, int>(iterator->second.getType(), 1));
-            this->allTypes.push_back(iterator->second.getType());
+            if (!std::count(this->allTypes.begin(), this->allTypes.end(), iterator->second.getType()))
+                this->allTypes.push_back(iterator->second.getType());
         } else {
             numMap.insert(std::pair<string, int>(iterator->second.getType(),
                                                  numMap.find(iterator->second.getType())->second + 1));
         }
-
-        int max = 0;
-        for (const auto &myPair : numMap) {
-            if (numMap.find(myPair.first)->second > max) {
-                max = numMap.find(myPair.first)->second;
-                theKey = myPair.first;
-            }
+    }
+    int max = 0;
+    for (const auto &myPair : numMap) {
+        if (numMap.find(myPair.first)->second > max) {
+            max = numMap.find(myPair.first)->second;
+            theKey = myPair.first;
         }
     }
     return theKey;

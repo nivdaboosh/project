@@ -27,7 +27,7 @@ void Matrix::execute(Knn& knn, int client_sock) {
 
     std::vector<string> list;
     string line;
-    for (int i = 0; i < strings.size() * strings.size(); i = i + strings.size()) {
+    for (int i = 0; i < strings.size() * strings.size(); i++) {
         if (i % strings.size() == 0) {
             if (i != 0) {
                 list.push_back(line);

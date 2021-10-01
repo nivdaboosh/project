@@ -11,6 +11,7 @@ void Display::execute(Knn &knn, int client_sock) {
         output.push_back(to_string(counter) + "\t" + x);
         ++counter;
     }
+    output.push_back("Done.");
     TCPServer::sendMessage(Iris::vectorToStr(output, '$'), client_sock);
 
     TCPServer::readMessage(client_sock);
