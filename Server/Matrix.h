@@ -13,7 +13,7 @@ public:
         this->description = "display algorithm confusion matrix";
     }
 
-    void execute(Knn knn, int client_sock);
+    void execute(Knn& knn, int client_sock);
 };
 
 

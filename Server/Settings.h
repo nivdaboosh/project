@@ -13,7 +13,7 @@ public:
         this->description = "algorithm settings";
     }
 
-    void execute(Knn knn, int client_sock);
+    void execute(Knn& knn, int client_sock);
 };
 
 

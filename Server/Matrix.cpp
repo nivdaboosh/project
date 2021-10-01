@@ -5,7 +5,7 @@
 #include "Knn.h"
 #include "TCPServer.h"
 
-void Matrix::execute(Knn knn, int client_sock) {
+void Matrix::execute(Knn& knn, int client_sock) {
     std::vector<string> calculated = Iris::strToVector(knn.getTypes(), '$');
     std::vector<Iris> nullVector;
     std::vector<Iris> origin = knn.input(knn.getTest(), true, nullVector);

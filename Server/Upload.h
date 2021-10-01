@@ -13,7 +13,7 @@ public:
         this->description="upload an unclassified csv data file";
     }
 
-    void execute(Knn knn, int client_sock);
+    void execute(Knn& knn, int client_sock);
 };
 
 

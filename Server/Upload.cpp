@@ -3,7 +3,7 @@
 #include "Upload.h"
 #include "TCPServer.h"
 
-void Upload::execute(Knn knn, int client_sock) {
+void Upload::execute(Knn& knn, int client_sock) {
     string output="Please upload your local train CSV file.";
     TCPServer::sendMessage(output, client_sock);
 
@@ -18,6 +18,6 @@ void Upload::execute(Knn knn, int client_sock) {
 
     output="Upload complete";
     TCPServer::sendMessage(output, client_sock);
-
+    int x=0;
     TCPServer::readMessage(client_sock);
 }

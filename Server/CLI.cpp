@@ -57,6 +57,7 @@ void CLI::start() {
     list.push_back(to_string(counter) + "." + "\t" + "exit");
     string output = Iris::vectorToStr(list, '$');
     Knn knn = Knn();
+
     while (true) {
         TCPServer::sendMessage(output, client_sock);
 
@@ -70,7 +71,7 @@ void CLI::start() {
             } else {
                 commands[stoi(input) - 1]->execute(knn, client_sock);
             }
-        } catch (exception e){
+        } catch (exception e) {
             TCPServer::sendMessage("Wrong choice", client_sock);
         }
     }

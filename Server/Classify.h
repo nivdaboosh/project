@@ -13,7 +13,7 @@ public:
         this->description = "classify data";
     }
 
-    void execute(Knn knn, int client_sock);
+    void execute(Knn& knn, int client_sock);
 };
 
 

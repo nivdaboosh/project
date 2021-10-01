@@ -17,7 +17,7 @@ public:
      * @param knn Knn.
      * @param client_sock int.
      */
-    virtual void execute(Knn knn, int client_sock) = 0;
+    virtual void execute(Knn& knn, int client_sock) = 0;
 
     /**
      * Returns the description of the command.

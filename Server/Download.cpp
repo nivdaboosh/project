@@ -4,7 +4,7 @@
 #include "Download.h"
 #include "TCPServer.h"
 
-void Download::execute(Knn knn, int client_sock) {
+void Download::execute(Knn& knn, int client_sock) {
     string letsGo="enter a file path";
     TCPServer::sendMessage(letsGo, client_sock);
 
