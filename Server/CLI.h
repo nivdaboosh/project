@@ -4,10 +4,10 @@
 
 class CLI {
 public:
-/**
-* Starts the program.
-*/
-void start();
+    /**
+    * Starts the program.
+    */
+    void start();
 };
 
 

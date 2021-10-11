@@ -3,6 +3,7 @@ project(Server)
 project(Client)
 
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_FLAGS -pthread)
 
 add_executable(Server Server/main.cpp Server/Knn.cpp Server/Knn.h Iris.h
         Iris.cpp Server/TCPServer.cpp Server/TCPServer.h Server/Upload.cpp Server/Upload.h Server/CLI.cpp Server/CLI.h

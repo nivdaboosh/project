@@ -13,7 +13,14 @@ public:
         this->description = "classify data";
     }
 
-    void execute(Knn& knn, int client_sock);
+    /**
+     * Execute.
+     * @param knn Knn.
+     * @param client_sock int.
+     */
+    void execute(Knn &knn, int client_sock);
+
+    static std::vector<string> theRun(Knn knn, string classified, string unclassified);
 };
 
 

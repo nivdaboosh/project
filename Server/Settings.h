@@ -4,7 +4,7 @@
 
 #include "Command.h"
 
-class Settings : public Command{
+class Settings : public Command {
 public:
     /**
      * Constructor.
@@ -13,7 +13,12 @@ public:
         this->description = "algorithm settings";
     }
 
-    void execute(Knn& knn, int client_sock);
+    /**
+     * Execute.
+     * @param knn Knn.
+     * @param client_sock int.
+     */
+    void execute(Knn &knn, int client_sock);
 };
 
 

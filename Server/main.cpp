@@ -10,6 +10,6 @@
  * @return int.
  */
 int main(int argc, char *argv[]) {
-    CLI c=CLI();
+    CLI c = CLI();
     c.start();
 }

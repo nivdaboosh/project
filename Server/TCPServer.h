@@ -7,6 +7,8 @@ using namespace std;
 
 class TCPServer {
 public:
+    static int theSocket;
+
     /**
      * Reads a message.
      * @param client_sock int.
@@ -20,6 +22,17 @@ public:
      * @param client_sock int.
      */
     static void sendMessage(string message, int client_sock);
+
+    /**
+     * Accepting the socket.
+     * @return int.
+     */
+    static int acceptSocket();
+
+    /**
+     * Creating a socket.
+     */
+    static void createSocket();
 };
 
 

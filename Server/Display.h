@@ -4,16 +4,21 @@
 
 #include "Command.h"
 
-class Display : public Command{
+class Display : public Command {
 public:
     /**
      * Constructor.
      */
     Display() {
-        this->description="display results";
+        this->description = "display results";
     }
 
-    void execute(Knn& knn, int client_sock);
+    /**
+     * Execute.
+     * @param knn Knn.
+     * @param client_sock int.
+     */
+    void execute(Knn &knn, int client_sock);
 };
 
 

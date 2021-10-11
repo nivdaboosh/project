@@ -10,10 +10,15 @@ public:
      * Constructor.
      */
     Upload() {
-        this->description="upload an unclassified csv data file";
+        this->description = "upload an unclassified csv data file";
     }
 
-    void execute(Knn& knn, int client_sock);
+    /**
+     * Execute.
+     * @param knn Knn.
+     * @param client_sock int.
+     */
+    void execute(Knn &knn, int client_sock);
 };
 
 

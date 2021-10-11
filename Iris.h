@@ -16,22 +16,17 @@ using namespace std;
  */
 class Iris {
 private:
-    double x;
-    double y;
-    double z;
-    double w;
+    std::vector<double> par;
     string type;
     string distanceType;
 public:
     /**
      * Constructor. Creates a new Iris.
-     * @param x -double.
-     * @param y -double.
-     * @param z -double.
-     * @param w -double.
-     * @param type -string.
+     * @param par std::vector<double>.
+     * @param type string.
+     * @param distanceType string.
      */
-    Iris(double x, double y, double z, double w, string type, string distanceType);
+    Iris(std::vector<double> par, string type, string distanceType);
 
     /**
      * Calculates the distance from a Iris to an other Iris.
@@ -60,6 +55,8 @@ public:
      * @return std::vector<string>.
      */
     static std::vector<string> strToVector(const std::string &str, const char identifier);
+
+    std::vector<double> getPar();
 };
 
 #endif //UNTITLED_IRIS_H};

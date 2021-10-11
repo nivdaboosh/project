@@ -4,7 +4,7 @@
 
 #include "Command.h"
 
-class Matrix : public Command{
+class Matrix : public Command {
 public:
     /**
      * Constructor.
@@ -13,7 +13,12 @@ public:
         this->description = "display algorithm confusion matrix";
     }
 
-    void execute(Knn& knn, int client_sock);
+    /**
+     * Execute.
+     * @param knn Knn.
+     * @param client_sock int.
+     */
+    void execute(Knn &knn, int client_sock);
 };
 
 

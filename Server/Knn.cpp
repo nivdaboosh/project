@@ -66,24 +66,28 @@ string Knn::theType(Iris iris, std::vector<Iris> others) {
 std::vector<Iris> Knn::input(string path, bool isClassified, std::vector<Iris> others) {
     ifstream file(path);
     std::vector<Iris> irises;
+    std::vector<double> pars;
     string myText;
+    string isNull = "not null";
+    string type;
     while (std::getline(file, myText)) {
-        double x = std::stod(std::strtok(const_cast<char *>(myText.c_str()), ","));
-        double y = std::stod(std::strtok(nullptr, ","));
-        double z = std::stod(std::strtok(nullptr, ","));
-        double w = std::stod(std::strtok(nullptr, ","));
-        string isType;
-        if (isClassified) {
-            isType = std::strtok(nullptr, ",");
+        pars.push_back(std::stod(std::strtok(const_cast<char *>(myText.c_str()), ",")));
+        while (isNull != "") {
+            isNull = std::strtok(nullptr, ",");
+            try {
+                pars.push_back(std::stod(isNull));
+            }
+            catch (exception exception) {
+                type = isNull;
+                break;
+            }
         }
-        string type;
-        if (isClassified) {
-            type = isType;
-        } else {
-            Iris helper = Iris(x, y, z, w, "", this->distanceType);
+
+        if (!isClassified) {
+            Iris helper = Iris(pars, "", this->distanceType);
             type = theType(helper, others);
         }
-        irises.emplace_back(x, y, z, w, type, this->distanceType);
+        irises.emplace_back(pars, type, this->distanceType);
     }
     file.close();
     return irises;
@@ -103,6 +107,7 @@ std::vector<string> Knn::run(string classified, string unclassified) {
     for (int i = 0; i < irises.size(); ++i) {
         output.push_back(irises[i].getType());
     }
+    this->setTypes(Iris::vectorToStr(output, '$'));
     return output;
 }
 

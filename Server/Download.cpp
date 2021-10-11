@@ -1,14 +1,13 @@
 #include <fstream>
-#include "cstring"
 
 #include "Download.h"
 #include "TCPServer.h"
 
-void Download::execute(Knn& knn, int client_sock) {
-    string letsGo="enter a file path";
+void Download::execute(Knn &knn, int client_sock) {
+    string letsGo = "enter a file path";
     TCPServer::sendMessage(letsGo, client_sock);
 
-    string input=TCPServer::readMessage(client_sock);
+    string input = TCPServer::readMessage(client_sock);
 
     std::vector<string> list = Iris::strToVector(knn.getTypes(), '$');
     std::ofstream fout(input);

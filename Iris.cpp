@@ -10,26 +10,34 @@ using std::endl;
 using std::ifstream;
 using namespace std;
 
-Iris::Iris(double x, double y, double z, double w, string type, string distanceType) {
-    this->x = x;
-    this->y = y;
-    this->z = z;
-    this->w = w;
+Iris::Iris(std::vector<double> par, string type, string distanceType) {
+    this->par = par;
     this->distanceType = std::move(distanceType);
     this->type = std::move(type);
 }
 
 double Iris::getDistance(Iris other) {
-    double powX = pow(this->x - other.x, 2);
-    double powY = pow(this->y - other.y, 2);
-    double powZ = pow(this->z - other.z, 2);
-    double powW = pow(this->w - other.w, 2);
+    std::vector<double> distances;
+    for (int i = 0; i < this->par.size(); ++i) {
+        distances.push_back(pow(this->par[i] - other.getPar()[i], 2));
+    }
+    double theDistance = 0;
+    for (int i = 0; i < distances.size(); ++i) {
+        if (this->distanceType == "EUC") {
+            theDistance += distances[i];
+        } else if (this->distanceType == "MAN") {
+            theDistance += abs(distances[i]);
+        } else if (this->distanceType == "CHE") {
+            if (theDistance < abs(distances[i])) {
+                theDistance = distances[i];
+            }
+        }
+    }
     if (this->distanceType == "EUC") {
-        return sqrt(powX + powY + powZ + powW);
-    } else if (this->distanceType == "MAN") {
-        return abs(powX) + abs(powY) + abs(powZ) + abs(powW);
-    } else if (this->distanceType == "CHE") {
-        return max(max(abs(powX), abs(powY)), max(abs(powZ), abs(powW)));
+        return sqrt(theDistance);
+    }
+    if (this->distanceType == "MAN" || this->distanceType == "CHE") {
+        return theDistance;
     }
 }
 
@@ -54,4 +62,8 @@ string Iris::vectorToStr(std::vector<string> list, char identifier) {
         str += identifier;
     }
     return str;
+}
+
+std::vector<double> Iris::getPar() {
+    return this->par;
 }

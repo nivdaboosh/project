@@ -13,6 +13,11 @@ public:
         this->description = "download results";
     }
 
+    /**
+     * Execute.
+     * @param knn Knn.
+     * @param client_sock int.
+     */
     void execute(Knn& knn, int client_sock);
 };
 
