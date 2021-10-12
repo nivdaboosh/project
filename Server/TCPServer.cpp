@@ -63,7 +63,7 @@ int TCPServer::acceptSocket() {
     struct timeval timeval;
     memset(&timeval, 0, sizeof(timeval));
     // Timeout is 60 seconds.
-    timeval.tv_sec = 60;
+    timeval.tv_sec = 20;
 
     fd_set fdSet;
     FD_ZERO(&fdSet);
@@ -72,7 +72,7 @@ int TCPServer::acceptSocket() {
     if (select(sock + 1, &fdSet, NULL, NULL, &timeval) < 0) {
         perror("select error");
     }
-    // If a connection has been made to connect to the server, and the Timeout hasn't passed yet
+    // If a connection has been made to connect to the server, and the timeout hasn't passed yet.
     if (FD_ISSET(sock, &fdSet)) {
         struct sockaddr_in client_sin;
         unsigned int addr_len = sizeof(client_sin);
