@@ -17,19 +17,15 @@ Iris::Iris(std::vector<double> par, string type, string distanceType) {
 }
 
 double Iris::getDistance(Iris other) {
-    std::vector<double> distances;
-    for (int i = 0; i < this->par.size(); ++i) {
-        distances.push_back(pow(this->par[i] - other.getPar()[i], 2));
-    }
     double theDistance = 0;
-    for (int i = 0; i < distances.size(); ++i) {
+    for (int i = 0; i < this->par.size(); ++i) {
         if (this->distanceType == "EUC") {
-            theDistance += distances[i];
+            theDistance += pow(this->par[i] - other.getPar()[i], 2);
         } else if (this->distanceType == "MAN") {
-            theDistance += abs(distances[i]);
+            theDistance += abs(this->par[i] - other.getPar()[i]);
         } else if (this->distanceType == "CHE") {
-            if (theDistance < abs(distances[i])) {
-                theDistance = distances[i];
+            if (theDistance < abs(this->par[i] - other.getPar()[i])) {
+                theDistance = abs(this->par[i] - other.getPar()[i]);
             }
         }
     }
