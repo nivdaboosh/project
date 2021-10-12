@@ -34,7 +34,7 @@ In order to run the project, Clone the git and download our two implemented dire
 first, in order to make a directory "build" and compile, these are the commands :
 mkdir build,
 cd build,
-cmake ..,
+cmake .,
 make
 
 Then you should run the server with:
