@@ -32,17 +32,17 @@ In task 3, the long task that takes time, we used multithreading, in order to ma
 In order to run the project, Clone the git and download our two implemented directories, including two mains, and the classes Iris.cpp, Iris.h, and the CMakeList.txt.
 
 first, in order to make a directory "build" and compile, these are the commands :
-mkdir build
-cd build
-cmake ..
+mkdir build,
+cd build,
+cmake ..,
 make
 
 Then you should run the server with:
-cd server
+cd server,
 ./Server
 
 And at last, to run the clients use:
-cd client
+cd client,
 ./Client
 
 Good luck !
