@@ -35,14 +35,13 @@ string Knn::theType(Iris iris, std::vector<Iris> others) {
     string theKey;
     for (int i = 0; i < this->k; ++i) {
         auto iterator = map.find(distances[i]);
-
         if (!numMap.count(iterator->second.getType())) {
             numMap.insert(std::pair<string, int>(iterator->second.getType(), 1));
             if (!std::count(this->allTypes.begin(), this->allTypes.end(), iterator->second.getType()))
                 this->allTypes.push_back(iterator->second.getType());
         } else {
-            numMap.insert(std::pair<string, int>(iterator->second.getType(),
-                                                 numMap.find(iterator->second.getType())->second + 1));
+            int number = numMap.find(iterator->second.getType())->second;
+            numMap[iterator->second.getType()]=number+1;
         }
     }
     int max = 0;
