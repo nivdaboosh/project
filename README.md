@@ -38,11 +38,11 @@ cmake .,
 make
 
 Then you should run the server with:
-cd server,
+cd Server,
 ./Server
 
 And at last, to run the clients use:
-cd client,
+cd Client,
 ./Client
 
 We also implemented the files Iris_train.csv and Iris_test.csv, that can use as a training and a test of the KNN, and output.csv which is the results of these files.
