@@ -40,6 +40,7 @@ void CLI::start() {
         try {
             if (stoi(input) > 7 || stoi(input) < 1) {
                 TCPServer::sendMessage("Wrong number", client_sock);
+                TCPServer::readMessage(client_sock);
             } else if (input == "7") {
                 close(client_sock);
                 exit(1);
@@ -48,6 +49,7 @@ void CLI::start() {
             }
         } catch (exception e) {
             TCPServer::sendMessage("Wrong choice", client_sock);
+            TCPServer::readMessage(client_sock);
         }
     }
 }

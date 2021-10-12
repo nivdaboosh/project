@@ -7,7 +7,6 @@
 
 using namespace std;
 
-// abstract
 class Command {
 protected:
     string description;

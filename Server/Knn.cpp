@@ -64,13 +64,19 @@ string Knn::theType(Iris iris, std::vector<Iris> others) {
  * @return irises vector.
  */
 std::vector<Iris> Knn::input(string path, bool isClassified, std::vector<Iris> others) {
+    if (!isClassified) {
+        int theSize = this->allTypes.size();
+        for (int i = 0; i < theSize; ++i) {
+            this->allTypes.pop_back();
+        }
+    }
     ifstream file(path);
     std::vector<Iris> irises;
-    std::vector<double> pars;
     string myText;
     string isNull = "not null";
     string type;
     while (std::getline(file, myText)) {
+        std::vector<double> pars;
         pars.push_back(std::stod(std::strtok(const_cast<char *>(myText.c_str()), ",")));
         while (isNull != "") {
             isNull = std::strtok(nullptr, ",");
@@ -97,7 +103,7 @@ std::vector<Iris> Knn::input(string path, bool isClassified, std::vector<Iris> o
  * main - starts the program.
  * @return 0.
  */
-std::vector<string> Knn::run(string classified, string unclassified) {
+void Knn::run(string classified, string unclassified) {
     string pathC = std::move(classified);
     string pathU = std::move(unclassified);
     std::vector<Iris> nullVector;
@@ -108,7 +114,6 @@ std::vector<string> Knn::run(string classified, string unclassified) {
         output.push_back(irises[i].getType());
     }
     this->setTypes(Iris::vectorToStr(output, '$'));
-    return output;
 }
 
 void Knn::setK(int x) {

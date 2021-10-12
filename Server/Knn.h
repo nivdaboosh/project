@@ -41,7 +41,7 @@ public:
      * @param unclassified string.
      * @return std::vector<string>.
      */
-    std::vector<string> run(string classified, string unclassified);
+    void run(string classified, string unclassified);
 
     /**
      * Sets the K.

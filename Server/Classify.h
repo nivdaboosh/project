@@ -20,7 +20,14 @@ public:
      */
     void execute(Knn &knn, int client_sock);
 
-    static std::vector<string> theRun(Knn knn, string classified, string unclassified);
+    /**
+     * Static function for Knn::run.
+     * @param knn Knn.
+     * @param classified string.
+     * @param unclassified string.
+     * @return std::vector<string>.
+     */
+    static void theRun(Knn *knn);
 };
 
 

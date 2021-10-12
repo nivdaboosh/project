@@ -5,15 +5,13 @@
 #include "Knn.h"
 #include "TCPServer.h"
 
-std::vector<string> Classify::theRun(Knn knn, string classified, string unclassified) {
-    return knn.run(classified, unclassified);
+void Classify::theRun(Knn *knn) {
+    knn->run(knn->getTrain(), knn->getTest());
 }
 
 void Classify::execute(Knn &knn, int client_sock) {
-    //std::thread thread(Classify::theRun, knn, knn.getTrain(), knn.getTest());
-
-    std::vector<string> list = knn.run(knn.getTrain(), knn.getTest());
-    knn.setTypes(Iris::vectorToStr(list, '$'));
+    std::thread thread(Classify::theRun, &knn);
+    thread.detach();
 
     string output = "classifying data complete";
     TCPServer::sendMessage(output, client_sock);
