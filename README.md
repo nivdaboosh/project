@@ -46,5 +46,6 @@ cd client,
 ./Client
 
 We also implemented the files Iris_train.csv and Iris_test.csv, that can use as a training and a test of the KNN, and output.csv which is the results of these files.
+To show that our code can handle more than 4 columns, we implemented soccer_train.csv and soccer_test.csv, with the results : soccerOutput.csv.
 
 Good luck !
